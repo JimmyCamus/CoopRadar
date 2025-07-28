@@ -2,7 +2,7 @@
 services:
   postgres:
     image: postgres:17.5-alpine
-    container_name: nest-oauth2-template-postgres
+    container_name: coop-radar-postgres
     restart: unless-stopped
     environment:
       POSTGRES_USER: ${DATABASE_USER}
@@ -29,7 +29,7 @@ services:
 
   redis:
     image: redis:8.0.3-alpine
-    container_name: nest-oauth2-template-redis
+    container_name: coop-radar-redis
     restart: always
     ports:
       - '6379:6379'
