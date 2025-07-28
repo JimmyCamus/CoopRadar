@@ -1,150 +1,48 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="90" alt="Nest Logo" /></a>
-</p>
+# 🎮 CoopRadar (WIP)
 
-<h1 align="center">Nest OAuth2 Template</h1>
+> Discover cooperative games you can enjoy with your friends — across multiple platforms.
 
-A robust, modular NestJS template for building secure, scalable applications with OAuth2 authentication (Google & Github), JWT, Redis, PostgreSQL, and best practices for configuration and testing.
+## 🧩 About the Project
 
----
+**CoopRadar** is a platform designed to help players quickly find and explore cooperative (co-op) video games, filtered by platform, genre, number of players, and more. The motivation comes from a real problem: my friend and I often struggle to find good co-op games we can enjoy together.
 
-## Features
+The platform is currently under active development and aims to evolve into a robust search and recommendation engine for multiplayer gaming experiences.
 
-- **NestJS 11+** modular architecture
-- **OAuth2 authentication** with Google and Github (Passport strategies)
-- **JWT-based session management**
-- **Redis** for session and cache management
-- **PostgreSQL** as the main database (TypeORM integration)
-- **Centralized configuration** with validation and custom exceptions
-- **Logging** with [nestjs-pino](https://github.com/iamolegga/nestjs-pino)
-- **Rate limiting** with Throttler
-- **Unit and e2e testing** with mocks and real integrations
-- **Extensible structure** for adding new OAuth providers or modules
+## 🚀 Core Features (planned)
 
----
+- 🔍 **Search** co-op games by platform, genre, rating, release date, and more.
+- 🧠 **Smart recommendations** based on previously played games (powered by AI).
+- 🎮 **Game details** with links to Steam, Epic, Xbox, etc.
+- ❤️ **Favorites and history** per user.
+- 🤝 **Friend matching** to suggest games everyone in your groups.
 
-## Main Endpoints
+## 🏗️ Architecture Overview
 
-- `GET /health`  
-  Returns application status and uptime.
+| Component                  | Technology    | Purpose                                 |
+|---------------------------|---------------|-----------------------------------------|
+| Main API Backend          | NestJS        | Core REST API for games, users, search  |
+| Recommendation Service    | FastAPI  | AI-based recommendation engine         |
+| Game Data Provider        | IGDB API      | Source of game metadata                 |
+| Database                  | PostgreSQL    | Persistence for users, games, favorites |
+| Caching     | Redis         | API response caching and task queues    |
 
-- `GET /auth/google`  
-  Redirects to Google OAuth2.
+## 🧠 Why this project matters
 
-- `GET /auth/google/redirect`  
-  Handles Google OAuth2 callback.
+- Built around a real-world use case.
+- Combines Node.js and Python in a microservice architecture.
+- Integrates external APIs and structured search logic.
+- Incorporates machine learning for recommendations.
+- Designed to grow in complexity: ideal to showcase senior-level thinking.
 
-- `GET /auth/github`  
-  Redirects to Github OAuth2.
+## 🛠️ Development Status
 
-- `GET /auth/github/redirect`  
-  Handles Github OAuth2 callback.
+This project is currently in early development. Core endpoints for game browsing and user management are in progress.
 
-- `GET /auth/profile`  
-  Returns authenticated user profile (requires valid JWT/session).
+✅ Authentication  
+⬜️ Initial IGDB integration  
+⬜️ Favorites / history  
+⬜️ AI microservice  
+⬜️ Recommendation engine  
+⬜️ Frontend (planned)
 
----
 
-## Configuration
-
-All environment variables are validated at startup.  
-Example `.env` file:
-
-```
-NODE_ENV=development
-PORT=8000
-
-# Google OAuth
-GOOGLE_CLIENT_ID=your-google-client-id
-GOOGLE_CLIENT_SECRET=your-google-client-secret
-GOOGLE_CALLBACK_URL=http://localhost:8000/auth/google/redirect
-
-# Github OAuth
-GITHUB_CLIENT_ID=your-github-client-id
-GITHUB_CLIENT_SECRET=your-github-client-secret
-GITHUB_CALLBACK_URL=http://localhost:8000/auth/github/redirect
-
-AUTH_REDIRECT_URL=http://localhost:8000/auth/profile
-
-# Database
-DATABASE_HOST=localhost
-DATABASE_PORT=5432
-DATABASE_USER=postgres
-DATABASE_PASSWORD=yourpassword
-DATABASE_NAME=yourdb
-
-# JWT
-JWT_SECRET=your-jwt-secret
-
-# Redis
-REDIS_HOST=localhost
-REDIS_PASSWORD=yourredispassword
-```
-
----
-
-## How to Run
-
-1. **Install dependencies:**
-
-   ```bash
-   pnpm install
-   ```
-
-2. **Set up your `.env` file** (see example above).
-
-3. **Start the application:**
-   ```bash
-   pnpm start
-   ```
-   The app will run on the port specified in your `.env` (`PORT`).
-
----
-
-## Testing
-
-- **Unit tests:**
-
-  ```bash
-  pnpm test
-  ```
-
-- **End-to-end (e2e) tests:**
-  ```bash
-  pnpm test:e2e
-  ```
-  You can use mocks for Redis and Postgres in-memory for the database to speed up CI/CD and local testing.
-
----
-
-## Extending the Template
-
-- Add new OAuth providers in `src/auth/strategies/`.
-- Customize configuration validation in `src/config/lib/validate.ts`.
-- Add new endpoints and modules following the modular structure.
-
----
-
-## Requirements
-
-- Node.js 18+
-- PostgreSQL and Redis (or their mocks for testing)
-- pnpm package manager
-
----
-
-## License
-
-MIT
-
----
-
-## Author
-
-[JimmyCamus](https://github.com/JimmyCamus)
-
----
-
-## Contributions
-
-Pull requests and suggestions are welcome!
